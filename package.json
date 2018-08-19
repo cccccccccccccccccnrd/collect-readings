@@ -1,0 +1,15 @@
+{
+  "name": "collect-readings",
+  "version": "1.0.0",
+  "description": "Collects readings from MQTT stream and cleans them accordingly to settings.",
+  "main": "listen.js",
+  "scripts": {
+    "collect": "node listen 1 && node extract water-temperature electrical-conductivity temperature humidity light-intensity"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "mqtt": "^2.18.3"
+  }
+}

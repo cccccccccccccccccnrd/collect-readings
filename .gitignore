@@ -1,3 +1,6 @@
+readings.json
+cleaned-readings.json
+
 # Logs
 logs
 *.log
@@ -59,3 +62,13 @@ typings/
 
 # next.js build output
 .next
+
+# DS_Store
+.DS_Store
+
+# vscode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
