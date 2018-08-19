@@ -16,7 +16,7 @@ For example here the script is listening for `10` minutes extracting the reading
 `humidity`
 `light-intensity`
 
-> To listen to a custom MQTT server and topic use parameters like this:
+To listen to a custom MQTT server and topic use parameters like this:
 ```
 node listen <listening duration in minutes> <ip> <topic> <username> <password>
 ```
