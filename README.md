@@ -14,7 +14,7 @@ For example here the script is listening for 10 minutes extracting the readings 
 
 Available types for static.cnrd.de
 `water-temperature`
-`electrical-conductivity
+`electrical-conductivity`
 `temperature`
 `humidity`
 `light-intensity`
