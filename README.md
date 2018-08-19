@@ -4,19 +4,19 @@ Modify the `package.json` `collect` script to your preferences.
 "collect": "node listen {duration in minutes} && node extract {types to extract}"
 ```
 
-Then just run
-```
-npm run collect
-```
-
 For example here the script is listening for `10` minutes extracting the readings with the type of `water-temperature` and `electrical-conductivity`.
 ```
 "collect": "node listen 10 && node extract water-temperature electrical-conductivity"
 ```
 
-Available types for static.cnrd.de: 
+> Available types for static.cnrd.de: 
 `water-temperature`
 `electrical-conductivity`
 `temperature`
 `humidity`
 `light-intensity`
+
+To run, just
+```
+npm run collect
+```
