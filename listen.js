@@ -33,7 +33,7 @@ function listen (ip, topic, options, duration) {
   console.log(`connecting to ${ip}...`)
 
   client.on('connect', () => {
-    console.log(`successfully connected and collecting readings for ${duration} minutes...`)
+    console.log(`successfully connected and collecting readings for ${duration} minute(s)...`)
     client.subscribe(topic)
   })
 
