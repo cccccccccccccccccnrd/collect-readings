@@ -52,7 +52,7 @@ function getType (readings, type) {
 }
 
 async function writeJson (data, filename) {
-  const dataJson = JSON.stringify(data)
+  const dataJson = JSON.stringify(data, null, 2)
   return await fs.writeFileSync(filename + '.json', dataJson)
 }
 
