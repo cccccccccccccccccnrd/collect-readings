@@ -52,5 +52,5 @@ function listen (ip, topic, options, duration) {
 
 async function writeJson (data, filename) {
   const dataJson = '[' + data + ']'
-  return await fs.writeFileSync(filename + '.json', dataJson)
+  return await fs.writeFileSync(`${filename}.json`, dataJson)
 }

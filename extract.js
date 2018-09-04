@@ -1,54 +1,43 @@
 const fs = require('fs')
 
-if (!process.argv[2]) throw 'Error: extract expects at least one type to extract as parameter.'
-
 const types = process.argv.filter((type, index) => {
   if (index > 1) return type
 })
 
 readJson('./readings.json')
-  .catch(error => {
-    throw 'Error' + error
-  })
-  .then(readings => {
-    extract(JSON.parse(readings), {
-      filename: 'cleaned-readings',
-      types: types
-    })
-
+  .catch(error => console.log(`Error: ${error}`))
+  .then(readings => extract(JSON.parse(readings)))
+  .then(() => {
     console.log(`successfully saved ${types} readings as 'cleaned-readings.json'`)
     process.exit()
   })
 
-function extract (readings, settings) {
+async function extract (readings, settings = { filename: 'cleaned-readings', types: ['water-temperature', 'electrical-conductivity', 'temperature', 'humidity', 'light-intensity'] }) {
   const filename = settings.filename
   const types = settings.types
 
-  const bundledTypes = types.map(type => {
-    return getType(readings, type)
+  const bundledTypes = []
+  
+  types.forEach(type => {
+    const types = getType(readings, type)
+    bundledTypes.push(...types)
   })
 
-  const bundledTypesFlat = [].concat.apply([], bundledTypes)
-  if (!bundledTypesFlat.length) throw 'Error: No valid type in readings.'
+  if (!bundledTypes.length) throw 'Error: No valid type in readings.'
 
-  writeJson(bundledTypesFlat, filename)
-    .catch(error => {
-      throw 'Error:' + error
-    })
+  return await writeJson(bundledTypes, filename)
 }
 
 function getType (readings, type) {
-  const cleanedReadings = readings.map(entry => {
-    return Object.values(entry)
-  })
+  const cleanedType = []
 
-  const data = cleanedReadings.map(readings => {
-    return readings.filter(reading => {
-      return reading.type === type
+  readings.forEach(log => {
+    log.readings.forEach(reading => {
+      if (reading.type === type) cleanedType.push(reading)
     })
   })
 
-  return [].concat.apply([], data)
+  return cleanedType
 }
 
 async function writeJson (data, filename) {
